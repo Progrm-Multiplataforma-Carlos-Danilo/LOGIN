@@ -1,9 +1,11 @@
 server:
-  port: 8085
+  port: 8082
+
 spring:
   application:
-    name: Cliente
+    name: login
   data:
     mongodb:
+      database: microServico
       auto-index-creation: true
-      uri: mongodb://localhost:27017/microServico
+      uri: mongodb://localhost:27017/login
