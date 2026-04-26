@@ -8,7 +8,7 @@ import com.api.entity.enumerable.UserRole;
 
 import java.util.List;
 
-@Document(value = "User")
+@Document(value = "usuario")
 public record UserOrmMongo(
     @Id
     String id,
