@@ -10,6 +10,9 @@ import com.api.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/login/v1/user")
 public class UserController {
@@ -47,5 +50,18 @@ public class UserController {
     public String deletar(@PathVariable String id) {
         repository.deletar(id);
         return "User deletado com sucesso";
+    }
+
+    @GetMapping("/listar")
+    public List<UserResponse> listar() {
+        return repository.listar().stream()
+                .map(user -> new UserResponse(
+                        user.id(),
+                        user.username(),
+                        user.email(),
+                        user.password(),
+                        user.roles()
+                ))
+                .collect(Collectors.toList());
     }
 }

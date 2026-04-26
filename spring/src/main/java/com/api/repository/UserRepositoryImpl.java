@@ -11,7 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
+import java.util.List;
+import java.util.stream.Collectors;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
     private final PasswordEncoder encoder;
@@ -67,6 +68,17 @@ public class UserRepositoryImpl implements UserRepository {
     public void deletar(String id) {
         try {
             repository.deleteById(id);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Override
+    public List<User> listar() {
+        try {
+            return repository.findAll().stream()
+                    .map(UserRepositoryAdapter::cast)
+                    .collect(Collectors.toList());
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
