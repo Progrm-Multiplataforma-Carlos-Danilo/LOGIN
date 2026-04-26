@@ -10,10 +10,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableMethodSecurity
 @SpringBootApplication
 
-public class LoginAplication {
+public class Main {
 
     public static void main(String[] args) {
-        SpringApplication.run(LoginAplication.class, args);
+        SpringApplication.run(Main.class, args);
     }
 
 }
